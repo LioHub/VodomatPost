@@ -14,13 +14,17 @@ from Archive import userbd
 
 tableSock = {}
 
-def send(sock, data, idv):
+def send(data, idv):
     if type(data) == str:
         data = data.encode("utf-8")
     elif type(data) == dict:
         data = json.dumps(data).encode("utf-8")
-
-    tableSock[int(idv)].send(data)
+    while True:
+        if tableSock[int(idv)]["locked"]:
+            break
+    tableSock[int(idv)]["locked"] = True
+    tableSock[int(idv)]["socked"].send(data)
+    tableSock[int(idv)]["locked"] = False
     # sock.send(data)
 
 def connect(sock, addr):
@@ -50,7 +54,7 @@ def connect(sock, addr):
                             idv = param['idv']
                             # j = json.dumps(date)
                             # tableSock[int(param['idv'])].send(j.encode("utf-8"))
-                            send(sock, date, idv)
+                            send(date, idv)
                         except:
                             bot.send_message(param['idT'],
                                              "Приносим вам свои извинения,"
@@ -66,7 +70,7 @@ def connect(sock, addr):
                             idv = param['idv']
                             # j = json.dumps(date)
                             # tableSock[int(param['idv'])].send(j.encode("utf-8"))
-                            send(sock, date, idv)
+                            send(date, idv)
                             # j = json.dumps(date)
                             # tableSock[int(param['idv'])].send(j.encode("utf-8"))
                         except:
@@ -127,7 +131,7 @@ def connect(sock, addr):
                 prev = hostbd.get_vodomat(param['idv'])
                 idv = param['idv']
                 ypar = {'method': 'got', 'param': 'saved'}
-                send(sock, ypar, idv)
+                send(ypar, idv)
                 if date != prev:
                     hostbd.update_vodomat(**param)
                     workbyfile.write_on_file(date)
@@ -138,14 +142,14 @@ def connect(sock, addr):
                 hostbd.add_host(param['idv'])
                 idv = param['idv']
                 hostbd.update_vodomat(**param)
-                tableSock.update({date['param']['idv']: sock})
+                tableSock.update({date['param']['idv']: {"socket": sock, "locked": False}})
                 workbyfile.write_on_file(date)
                 ypar = {'method': 'got', 'param': 'saved'}
-                send(sock, ypar, idv)
+                send(ypar, idv)
             else:
                 ypar = {"method": "error", "param": {"type": "not method", "args": method}}
                 idv = param['idv']
-                send(sock, ypar, idv)
+                send(ypar, idv)
 
 
 
