@@ -5,7 +5,7 @@ import telebot
 
 token = ""
 
-bot = telebot.TeleBot(token=token)
+bot = telebot.TeleBot(token)
 
 
 from Archive import workbyfile
@@ -14,17 +14,25 @@ from Archive import userbd
 
 tableSock = {}
 
-def send(data, idv):
+def send(data, idv   ):
     if type(data) == str:
         data = data.encode("utf-8")
     elif type(data) == dict:
         data = json.dumps(data).encode("utf-8")
+    print(tableSock[int(idv)]["locked"])
     while True:
-        if tableSock[int(idv)]["locked"]:
+        if not tableSock[int(idv)]["locked"]:
             break
-    tableSock[int(idv)]["locked"] = True
-    tableSock[int(idv)]["socked"].send(data)
-    tableSock[int(idv)]["locked"] = False
+    # print('data:')
+    # print(data)
+    # print('socket:')
+    # print(type(tableSock[int(idv)]))
+
+    tableSock[int(idv)].update({"locked": True})
+    tableSock[int(idv)]["socket"].send(data)
+    # tableSock[int(idv)]["socket"].send(data2)
+    print("end send")
+    tableSock[int(idv)].update({"locked": False})
     # sock.send(data)
 
 def connect(sock, addr):
@@ -52,8 +60,6 @@ def connect(sock, addr):
                 if hostWI['State'] == 'WAIT':
                         try:
                             idv = param['idv']
-                            # j = json.dumps(date)
-                            # tableSock[int(param['idv'])].send(j.encode("utf-8"))
                             send(date, idv)
                         except:
                             bot.send_message(param['idT'],
@@ -70,6 +76,7 @@ def connect(sock, addr):
                             idv = param['idv']
                             # j = json.dumps(date)
                             # tableSock[int(param['idv'])].send(j.encode("utf-8"))
+
                             send(date, idv)
                             # j = json.dumps(date)
                             # tableSock[int(param['idv'])].send(j.encode("utf-8"))
