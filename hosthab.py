@@ -2,8 +2,9 @@ import threading
 import socket
 import json
 import telebot
+import time
 
-token = ""
+token = "321273335:AAGC0-DP7Rwxu99_sN3sSVdYDOcPgu3869g"
 
 bot = telebot.TeleBot(token)
 
@@ -14,32 +15,45 @@ from Archive import userbd
 
 tableSock = {}
 
-def send(data, idv   ):
+def cod(data):
     if type(data) == str:
         data = data.encode("utf-8")
     elif type(data) == dict:
         data = json.dumps(data).encode("utf-8")
-    print(tableSock[int(idv)]["locked"])
-    while True:
-        if not tableSock[int(idv)]["locked"]:
-            break
-    # print('data:')
-    # print(data)
-    # print('socket:')
-    # print(type(tableSock[int(idv)]))
+    return data
 
-    tableSock[int(idv)].update({"locked": True})
-    tableSock[int(idv)]["socket"].send(data)
+def send(data, idv):
+    print(tableSock[int(idv)]["locked"])
+    if data['method'] == 'got' and tableSock[int(idv)]["locked"] == False:
+        data=cod(data)
+        tableSock[int(idv)]["socket"].send(data)
+    else:
+        if data['method'] == 'Start' or data['method'] == 'Stop':
+            data=cod(data)
+            tableSock[int(idv)]["socket"].send(data)
+            # time.sleep(1)
+
+    #
+    # while True:
+    #     if not tableSock[int(idv)]["locked"]:
+    #         break
+
+    # tableSock[int(idv)].update({"locked": True})
+    # tableSock[int(idv)]["socket"].send(data)
     # tableSock[int(idv)]["socket"].send(data2)
     print("end send")
-    tableSock[int(idv)].update({"locked": False})
+    # tableSock[int(idv)].update({"locked": False})
     # sock.send(data)
+
+    # def fite(date):
+    #     if date['method'] == 'saved':
+
 
 def connect(sock, addr):
     while True:
         data = sock.recv(2048)
         data = data.decode("utf-8")
-        # print("data '%s' " % data)
+
 
         if data is None:
             print("Disconnect. Not Data: ", addr)
@@ -52,7 +66,7 @@ def connect(sock, addr):
             param = date.get("param")
 
 
-            if method == "Activate":
+            if method == "Start":
                 print("Activate:")
                 print(date)
 
@@ -60,6 +74,7 @@ def connect(sock, addr):
                 if hostWI['State'] == 'WAIT':
                         try:
                             idv = param['idv']
+                            tableSock[int(idv)].update({"locked": True})
                             send(date, idv)
                         except:
                             bot.send_message(param['idT'],
@@ -69,35 +84,39 @@ def connect(sock, addr):
 
 
             elif method == "Stop":
-                        print("Stop:")
-                        print(date)
-
-                        try:
-                            idv = param['idv']
+                print("Stop:")
+                print(date)
+                try:
+                    idv = param['idv']
+                    tableSock[int(idv)].update({"locked": True})
+                    send(date, idv)
                             # j = json.dumps(date)
                             # tableSock[int(param['idv'])].send(j.encode("utf-8"))
-
-                            send(date, idv)
-                            # j = json.dumps(date)
-                            # tableSock[int(param['idv'])].send(j.encode("utf-8"))
-                        except:
-                            bot.send_message(param['idT'],
+                except:
+                    bot.send_message(param['idT'],
                                              "Приносим вам свои извинения,"
                                              "но водомат временно в не рабочем состоянии!")
 
 
 
             elif method == "Answer":
+                idv=param['idv']
+                tableSock[int(idv)].update({"locked": False})
+
                 print("Answer:")
                 print(date)
                 HowManyWere = userbd.get_user(param['idT'])
                 HowManyWere = int(HowManyWere['score'])
-                
+
                 userbd.update_user(**param)
                 bot.send_message(param['idT'], "У вас на счету " + str(param['score']) + "₽")
 
                 ScoreVodomat = hostbd.get_vodomat(param['idv'])
                 ScoreVodomat = int(ScoreVodomat['score'])
+                ypar = {'method': 'got', 'param': 'saved'}
+                send(ypar, idv)
+
+
                 #
                 # try:
                 #     date['method']="GetStatus"
@@ -161,7 +180,7 @@ def connect(sock, addr):
 
 
         except ConnectionResetError:
-            tableSock.pop({date['param']['idv']: sock})
+            tableSock.pop({date['param']['idv']})
             print("Disconnect: ", addr)
         except json.JSONDecodeError:
             pass
