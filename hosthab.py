@@ -2,7 +2,6 @@ import threading
 import socket
 import json
 import telebot
-import time
 
 token = "321273335:AAGC0-DP7Rwxu99_sN3sSVdYDOcPgu3869g"
 
@@ -31,22 +30,7 @@ def send(data, idv):
         if data['method'] == 'Start' or data['method'] == 'Stop':
             data=cod(data)
             tableSock[int(idv)]["socket"].send(data)
-            # time.sleep(1)
-
-    #
-    # while True:
-    #     if not tableSock[int(idv)]["locked"]:
-    #         break
-
-    # tableSock[int(idv)].update({"locked": True})
-    # tableSock[int(idv)]["socket"].send(data)
-    # tableSock[int(idv)]["socket"].send(data2)
     print("end send")
-    # tableSock[int(idv)].update({"locked": False})
-    # sock.send(data)
-
-    # def fite(date):
-    #     if date['method'] == 'saved':
 
 
 def connect(sock, addr):
@@ -90,8 +74,6 @@ def connect(sock, addr):
                     idv = param['idv']
                     tableSock[int(idv)].update({"locked": True})
                     send(date, idv)
-                            # j = json.dumps(date)
-                            # tableSock[int(param['idv'])].send(j.encode("utf-8"))
                 except:
                     bot.send_message(param['idT'],
                                              "Приносим вам свои извинения,"
@@ -102,50 +84,34 @@ def connect(sock, addr):
             elif method == "Answer":
                 idv=param['idv']
                 tableSock[int(idv)].update({"locked": False})
-
+                Status = data['Status']
                 print("Answer:")
                 print(date)
-                HowManyWere = userbd.get_user(param['idT'])
-                HowManyWere = int(HowManyWere['score'])
+                #Score of user
+                ScoreOfUser = userbd.get_user(param['idT'])
+                TotalPaidBefore = int(ScoreOfUser['totalPaid'])
+                TotalPaidAfter = Status['totalPaid']
+                ScoreOfUser = int(ScoreOfUser['score'])
+                HowMuchWereSpent = TotalPaidAfter - TotalPaidBefore #Сколько потратил
+                HowMuchWere = HowMuchWereSpent + Status['leftfromPaid'] #Сколько было
+                HowMuchWereGiven = HowMuchWere - ScoreOfUser
+
+                # score of vodomat
+                ScoreOfVodomat = hostbd.get_vodomat(param['idv'])
+                ScoreOfVodomat = int(ScoreOfVodomat['score'])
+
+                ScoreOfVodomat = ScoreOfVodomat - HowMuchWereGiven
+                ScoreOfOwner = ScoreOfOwner + HowMuchWereSpent
 
                 userbd.update_user(**param)
                 bot.send_message(param['idT'], "У вас на счету " + str(param['score']) + "₽")
 
-                ScoreVodomat = hostbd.get_vodomat(param['idv'])
-                ScoreVodomat = int(ScoreVodomat['score'])
+                print("ScoreOfVodomat:")
+                print(ScoreOfVodomat)
+                hostbd.update_vodomatScore(param['idv'], ScoreOfVodomat)
+
                 ypar = {'method': 'got', 'param': 'saved'}
                 send(ypar, idv)
-
-
-                #
-                # try:
-                #     date['method']="GetStatus"
-                #     idv = param['idv']
-                #     # j = json.dumps(date)
-                #     # tableSock[int(param['idv'])].send(j.encode("utf-8"))
-                #     send(sock, date, idv)
-                #
-                # except:
-                #     bot.send_message(param['idT'],
-                #                      "Приносим вам свои извинения,"
-                #                      "но водомат временно в не рабочем состоянии!")
-                #
-                # data2 = sock.recv(2048)
-                # data2 = data2.decode("utf-8")
-                # date2 = json.loads(data2)
-                # print("date2:")
-                # print(date2)
-                #
-                # # HowManyWereSpent = int(date2['param']['totalPaid'])
-                # FindAllScore = HowManyWere + int(date2['param']['sessionpaid']) - int(date2['param']['leftfromPaid'])
-                # all = ScoreVodomat + FindAllScore
-                # print("all:")
-                # print(all)
-                # hostbd.update_vodomatScore(param['idv'], all)
-
-
-
-
 
             elif method == "error":
                 bot.send_message(param['idT'],
@@ -157,12 +123,11 @@ def connect(sock, addr):
                 prev = hostbd.get_vodomat(param['idv'])
                 idv = param['idv']
                 ypar = {'method': 'got', 'param': 'saved'}
-                send(ypar, idv)
                 if date != prev:
                     hostbd.update_vodomat(**param)
                     workbyfile.write_on_file(date)
                     # print("Savedate = %s" % date)
-
+                send(ypar, idv)
 
             elif method == "connect":
                 hostbd.add_host(param['idv'])
