@@ -24,11 +24,11 @@ def cod(data):
 def send(data, idv):
     print(tableSock[int(idv)]["locked"])
     if data['method'] == 'got' and tableSock[int(idv)]["locked"] == False:
-        data=cod(data)
+        data = cod(data)
         tableSock[int(idv)]["socket"].send(data)
     else:
         if data['method'] == 'Start' or data['method'] == 'Stop':
-            data=cod(data)
+            data = cod(data)
             tableSock[int(idv)]["socket"].send(data)
     print("end send")
 
@@ -57,6 +57,8 @@ def connect(sock, addr):
                 hostWI = hostbd.get_vodomat(int(param['idv']))
                 if hostWI['State'] == 'WAIT':
                         try:
+                            userbd.update_user(**param)
+                            hostbd.update_vodomatActivate(param['idv'], True)
                             idv = param['idv']
                             tableSock[int(idv)].update({"locked": True})
                             send(date, idv)
@@ -103,13 +105,14 @@ def connect(sock, addr):
                 ScoreOfVodomat = ScoreOfVodomat - HowMuchWereGiven
                 ScoreOfOwner = ScoreOfOwner + HowMuchWereSpent
 
+                param['idv'] = 0
                 userbd.update_user(**param)
                 bot.send_message(param['idT'], "У вас на счету " + str(param['score']) + "₽")
 
                 print("ScoreOfVodomat:")
                 print(ScoreOfVodomat)
                 hostbd.update_vodomatScore(param['idv'], ScoreOfVodomat)
-
+                hostbd.update_vodomatActivate(param['idv'], False)
                 ypar = {'method': 'got', 'param': 'saved'}
                 send(ypar, idv)
 
