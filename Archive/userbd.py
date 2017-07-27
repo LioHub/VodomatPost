@@ -18,10 +18,11 @@ def connect():
 def update_user(**kwargs):
     connection = connect()
     cursor = connection.cursor()
-    first = "UPDATE users SET score = %s WHERE idT = %s"
-    # first = "UPDATE users SET score = %s idv = %s WHERE idT = %s"
-    second = (kwargs.get('score'), kwargs.get('idT'))
-    # second = (kwargs.get('score'), kwargs.get('idv'), kwargs.get('idT')
+    # first = "UPDATE users SET score = %s WHERE idT = %s"
+    first = "UPDATE users SET score = %s, idv = %s WHERE idT = %s"
+    # second = (kwargs.get('score'), kwargs.get('idT'))
+    print('HIIIIIII')
+    second = (kwargs.get('score'), kwargs.get('idv'), kwargs.get('idT'))
     cursor.execute(first, second)
     connection.commit()
     cursor.close()

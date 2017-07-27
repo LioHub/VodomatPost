@@ -84,7 +84,7 @@ def update_vodomatActivate(idv, Activate): # Get a Vodomat with its idv
     print(idv)
     print("Activate:")
     print(Activate)
-    first = "UPDATE vs SET Activate = %s WHERE idv = %s"
+    first = "UPDATE vs SET action = %s WHERE idv = %s"
     second = (Activate, idv)
     cursor.execute(first, second)
     connection.commit()

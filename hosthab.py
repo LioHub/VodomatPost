@@ -3,9 +3,15 @@ import socket
 import json
 import telebot
 
-token = "321273335:AAGC0-DP7Rwxu99_sN3sSVdYDOcPgu3869g"
+file = open("/opt/key.json")
 
-bot = telebot.TeleBot(token)
+text = file.read()
+
+config = json.loads(text)
+
+token = config["token"]
+
+bot = telebot.TeleBot(tpken=token)
 
 
 from Archive import workbyfile
@@ -53,13 +59,20 @@ def connect(sock, addr):
             if method == "Start":
                 print("Activate:")
                 print(date)
-
+                bot.send_message(param['idT'],
+                                 "Привет!")
                 hostWI = hostbd.get_vodomat(int(param['idv']))
+                print('hostWI:')
+                print(hostWI)
                 if hostWI['State'] == 'WAIT':
+                        print('Hi')
                         try:
                             userbd.update_user(**param)
-                            hostbd.update_vodomatActivate(param['idv'], True)
+                            print('sdfsdf')
+                            perTrue = "1"
                             idv = param['idv']
+                            hostbd.update_vodomatActivate(idv, perTrue)
+                            print('dasdasdasda')
                             tableSock[int(idv)].update({"locked": True})
                             send(date, idv)
                         except:
@@ -74,6 +87,8 @@ def connect(sock, addr):
                 print(date)
                 try:
                     idv = param['idv']
+                    perFalse= "0"
+                    hostbd.update_vodomatActivate(idv, perFalse)
                     tableSock[int(idv)].update({"locked": True})
                     send(date, idv)
                 except:
@@ -84,35 +99,57 @@ def connect(sock, addr):
 
 
             elif method == "Answer":
-                idv=param['idv']
-                tableSock[int(idv)].update({"locked": False})
-                Status = data['Status']
+
                 print("Answer:")
                 print(date)
+
+                print('param:')
+                print(param)
+                idv=param['idv']
+                tableSock[int(idv)].update({"locked": False})
+                print('jgfkjb')
+                Status = date['Status']
+                print("Status:")
+                print(Status)
                 #Score of user
                 ScoreOfUser = userbd.get_user(param['idT'])
-                TotalPaidBefore = int(ScoreOfUser['totalPaid'])
+                print("ScoreOfUser:2")
+                print(ScoreOfUser)
+
+                SostoyanieVodomata = hostbd.get_vodomat(idv)
+                print("SostoyanieVodomata:3")
+                print(SostoyanieVodomata)
+                TotalPaidBefore = int(SostoyanieVodomata['totalPaid'])
+                print("TotalPaidBefore:4")
+                print(TotalPaidBefore)
                 TotalPaidAfter = Status['totalPaid']
+                print("TotalPaidAfter:5")
+                print(TotalPaidAfter)
                 ScoreOfUser = int(ScoreOfUser['score'])
+                print("ScoreOfUser:6")
+                print(ScoreOfUser)
                 HowMuchWereSpent = TotalPaidAfter - TotalPaidBefore #Сколько потратил
-                HowMuchWere = HowMuchWereSpent + Status['leftfromPaid'] #Сколько было
+                HowMuchWere = HowMuchWereSpent + Status['leftFromPaid'] #Сколько было
                 HowMuchWereGiven = HowMuchWere - ScoreOfUser
-
+                print("Status:7")
                 # score of vodomat
-                ScoreOfVodomat = hostbd.get_vodomat(param['idv'])
+                ScoreOfVodomat = hostbd.get_vodomat(idv)
                 ScoreOfVodomat = int(ScoreOfVodomat['score'])
-
+                print("Status:")
                 ScoreOfVodomat = ScoreOfVodomat - HowMuchWereGiven
+                ScoreOfOwner=50
                 ScoreOfOwner = ScoreOfOwner + HowMuchWereSpent
+                print("Status:")
 
-                param['idv'] = 0
-                userbd.update_user(**param)
                 bot.send_message(param['idT'], "У вас на счету " + str(param['score']) + "₽")
 
                 print("ScoreOfVodomat:")
                 print(ScoreOfVodomat)
-                hostbd.update_vodomatScore(param['idv'], ScoreOfVodomat)
-                hostbd.update_vodomatActivate(param['idv'], False)
+                hostbd.update_vodomatScore(idv, ScoreOfVodomat)
+
+                param['idv'] = 0
+                userbd.update_user(**param)
+
                 ypar = {'method': 'got', 'param': 'saved'}
                 send(ypar, idv)
 
