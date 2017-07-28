@@ -187,7 +187,9 @@ def connect(sock, addr):
 
                 hostbd.update_vodomatScore(idv, InfOfVodomat)
 
+
                 param['idv'] = 0
+
                 userbd.update_user(**param)
 
                 ypar = {'method': 'got', 'param': 'saved'}
@@ -195,8 +197,11 @@ def connect(sock, addr):
 
 
             elif method == "error":
+                idv = param['idv']
                 bot.send_message(param['idT'],
                                  "В ходе работы произошла ошибка, пожалуйста попробуйте еще разок, ладненько?")
+                ypar = {'method': 'got', 'param': 'saved'}
+                send(ypar, idv)
 
             elif method == "status":  # for get information about hosts
                 idv = param['idv']
@@ -220,9 +225,6 @@ def connect(sock, addr):
                 idv = param['idv']
                 ypar = {"method": "error", "param": {"type": "not method", "args": method}}
                 send(ypar, idv)
-
-
-
         except ConnectionResetError:
             tableSock.pop({date['param']['idv']})
             print("Disconnect: ", addr)
@@ -231,11 +233,20 @@ def connect(sock, addr):
         except Exception as e:
             print(e)
 
-def habStart():
-    sock = socket.socket()
-    sock.bind(('', 9090))
-    sock.listen(1000)
+def conGateway():
+    try:
+        sock = socket.socket()
+        sock.bind(('', 9090))
+        return sock
+    except:
+        sock = socket.socket()
+        sock.bind(('', 9090))
+        return sock
 
+def habStart():
+    sock = conGateway()
+    # sock.bind(('', 9090))
+    sock.listen(1000)
     while True:
         print("hosthab")
         conn, addr = sock.accept()

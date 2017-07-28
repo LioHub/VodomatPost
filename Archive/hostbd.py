@@ -23,12 +23,12 @@ def add_host(idv): # Add a new Vodomat
                  "leftFromPaid": 0, "container": "", "currentContainerVolume": "",
                  "consumerPump": 0, "mainPump": 0, "magistralPressure": 0, "mainValve": 0,
                  "filterValve": 0, "washFilValve": 0, "tumperMoney": 0, "tumperDoor": 0,
-                 "serviceButton": 0, "freeButton": 0, "Voltage": 0}
+                 "serviceButton": 0, "freeButton": 0, "Voltage": 0, 'cashing': 0, 'credit': 0, 'sale': 0}
     param["idv"]=idv
     connection = connect()
     cursor = connection.cursor()
-    first = "INSERT INTO vs (idv, state, input10Counter, out10Counter, milLitlose, milLitWentOut, milLitContIn, waterPrice, waterContThreshold, contVolume, totalPaid, sessionPaid, leftFromPaid, container, currentContainerVolume, consumerPump, mainPump, magistralPressure, mainValve, filterValve, washFilValve, tumperMoney, tumperDoor, serviceButton, freeButton, Voltage) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-    second = (param.get('idv'), param.get('state'), param.get('input10Counter'),param.get('out10Counter'),param.get('milLitlose'),param.get('milLitWentOut'),param.get('milLitContIn'),param.get('waterPrice'),param.get('waterContThreshold'),param.get('contVolume'),param.get('totalPaid'),param.get('sessionPaid'),param.get('leftFromPaid'),param.get('container'),param.get('currentContainerVolume'),param.get('consumerPump'),param.get('mainPump'),param.get('magistralPressure'),param.get('mainValve'),param.get('filterValve'),param.get('washFilValve'),param.get('tumperMoney'),param.get('tumperDoor'),param.get('serviceButton'),param.get('freeButton'),param.get('Voltage'))
+    first = "INSERT INTO vs (idv, state, input10Counter, out10Counter, milLitlose, milLitWentOut, milLitContIn, waterPrice, waterContThreshold, contVolume, totalPaid, sessionPaid, leftFromPaid, container, currentContainerVolume, consumerPump, mainPump, magistralPressure, mainValve, filterValve, washFilValve, tumperMoney, tumperDoor, serviceButton, freeButton, Voltage) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    second = (param.get('idv'), param.get('state'), param.get('input10Counter'), param.get('out10Counter'), param.get('milLitlose'), param.get('milLitWentOut'), param.get('milLitContIn'), param.get('waterPrice'), param.get('waterContThreshold'), param.get('contVolume'), param.get('totalPaid'), param.get('sessionPaid'), param.get('leftFromPaid'), param.get('container'), param.get('currentContainerVolume'), param.get('consumerPump'), param.get('mainPump'), param.get('magistralPressure'), param.get('mainValve'), param.get('filterValve'), param.get('washFilValve'), param.get('tumperMoney'), param.get('tumperDoor'), param.get('serviceButton'), param.get('freeButton'), param.get('Voltage'), param.get('cashing'), param.get('credit'), param.get('sale'))
     cursor.execute(first, second)
     connection.commit()
     cursor.close()
@@ -69,8 +69,8 @@ def update_vodomatScore(idv, score): # Get a Vodomat with its idv
     print(idv)
     print("score:")
     print(score)
-    first = "UPDATE vs SET score = %s WHERE idv = %s"
-    second = (score, idv)
+    first = "UPDATE vs SET cashing = %s, credit = %s, sale = %s WHERE idv = %s"
+    second = (score['cashing'], score['credit'], score['sale'], idv)
     cursor.execute(first, second)
     connection.commit()
     cursor.close()
