@@ -30,6 +30,18 @@ def update_user(**kwargs):
     cursor.close()
     connection.close()
 
+def update_userAfterGotMoney(**kwargs):
+    connection = connect()
+    cursor = connection.cursor()
+    first = "UPDATE users SET cashing = %s, credit = %s, sale = %s WHERE idT = %s"
+    # second = (kwargs.get('score'), kwargs.get('idT'))
+    print('HIIIIIII')
+    second = (kwargs.get('cashing'), kwargs.get('credit'), kwargs.get('sale'), kwargs.get('idT'))
+    cursor.execute(first, second)
+    connection.commit()
+    cursor.close()
+    connection.close()
+
 def get_user(idT): # Get a Vodomat with its idv
     connection = connect()
     cursor = connection.cursor()

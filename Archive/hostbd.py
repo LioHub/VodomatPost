@@ -70,7 +70,7 @@ def update_vodomatScore(idv, score): # Get a Vodomat with its idv
     print("score:")
     print(score)
     first = "UPDATE vs SET cashing = %s, credit = %s, sale = %s WHERE idv = %s"
-    second = (score['cashing'], score['credit'], score['sale'], idv)
+    second = (score.get('cashing'), score.get('credit'), score.get('sale'), idv)
     cursor.execute(first, second)
     connection.commit()
     cursor.close()

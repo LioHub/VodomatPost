@@ -17,6 +17,7 @@ bot = telebot.TeleBot(token)
 from Archive import workbyfile
 from Archive import hostbd
 from Archive import userbd
+from Archive import adminka
 
 tableSock = {}
 
@@ -33,7 +34,7 @@ def send(data, idv):
         data = cod(data)
         tableSock[int(idv)]["socket"].send(data)
     else:
-        if data['method'] == 'Start' or data['method'] == 'Stop':
+        if data['method'] == 'Start' or data['method'] == 'Stop' or data['method'] == 'settings':
             data = cod(data)
             tableSock[int(idv)]["socket"].send(data)
     print("end send")
@@ -50,7 +51,8 @@ def connect(sock, addr):
             return False
 
         date = json.loads(data)
-
+        # print('date:')
+        # print(date)
         try:
             method = date.get("method")
             param = date.get("param")
@@ -91,12 +93,25 @@ def connect(sock, addr):
                                              "Приносим вам свои извинения,"
                                              "но водомат временно в не рабочем состоянии!")
 
+            elif method == 'settings':
+                print("Setting:")
+                print(date)
+                try:
+                    idv = param['idv']
+                    tableSock[int(idv)].update({"locked": True})
+                    send(date, idv)
+                    tableSock[int(idv)].update({"locked": False})
+                except:
+                    bot.send_message(param['idT'],
+                                             "Приносим вам свои извинения,"
+                                             "но водомат временно в не рабочем состоянии!")
+
             elif method == "Answer":
 
                 print("Answer:")
                 print(date)
 
-                idv = param['idv']
+                idv = int(param['idv'])
                 tableSock[int(idv)].update({"locked": False})
 
                 #статус водоматы с водомата
@@ -145,16 +160,36 @@ def connect(sock, addr):
 
                 # Информация водомата с БД
                 InfOfVodomat = hostbd.get_vodomat(idv)
+                print("InfOfVodomat:")
+                print(InfOfVodomat)
+
+                print("InfOfVodomat['sale']:")
+                print(InfOfVodomat['sale'])
+
+                print("InfOfVodomat['сashing']:")
+                print(InfOfVodomat.get('сashing'))
+
+                admin = adminka.get_admin(idv)
+                print('admin:')
+                print(admin)
+
+                InfAboutOwnerVodomat = userbd.get_user(admin['idT'])
+                print('InfAboutOwnerVodomat:')
+                print(InfAboutOwnerVodomat)
 
                 # Наличка водомата с БД
-                # cashing = int(InfOfVodomat['сashing'])
-                # print("сashing:")
-                # print(cashing)
-                # cashing = cashing + HowMuchWereGiven
-                InfOfVodomat['сashing']= InfOfVodomat['сashing'] + HowMuchWereGiven
-                print("InfOfVodomat['сashing']:")
-                print(InfOfVodomat['сashing'])
 
+                try:
+                    InfOfVodomat['сashing'] = int(InfOfVodomat.get('сashing')) + int(HowMuchWereGiven)
+                    InfAboutOwnerVodomat['сashing'] = InfAboutOwnerVodomat['сashing'] + HowMuchWereGiven
+                except:
+                    InfOfVodomat['сashing'] = 0
+
+                print("InfOfVodomat['сashing']:")
+                print(InfOfVodomat.get('сashing'))
+
+                print("InfAboutOwnerVodomat['сashing']:")
+                print(InfAboutOwnerVodomat['сashing'])
 
                 # Кредит водомата с БД
                 # credit = int(InfOfVodomat['credit'])
@@ -166,12 +201,17 @@ def connect(sock, addr):
                     InfOfVodomat['credit'] = InfOfVodomat['credit'] + credit
                     print("InfOfVodomat['credit']:")
                     print(InfOfVodomat['credit'])
+
+                    InfAboutOwnerVodomat['credit'] = InfAboutOwnerVodomat['credit'] + credit
+                    print("InfAboutOwnerVodomat['credit']:")
+                    print(InfAboutOwnerVodomat['credit'])
+                else:
+                    credit = 0
                 print("InfOfVodomat['credit']:")
                 print(InfOfVodomat['credit'])
 
 
                 # Продажи водомата с БД
-                # sale = int(InfOfVodomat['sale'])
                 print("InfOfVodomat['sale']:")
                 print(InfOfVodomat['sale'])
 
@@ -179,18 +219,19 @@ def connect(sock, addr):
                 print("InfOfVodomat['sale']:")
                 print(InfOfVodomat['sale'])
 
-                # ScoreOfVodomat = ScoreOfVodomat - HowMuchWereGiven
-                # ScoreOfOwner=50
-                # ScoreOfOwner = ScoreOfOwner + HowMuchWereSpent
+                InfAboutOwnerVodomat['sale'] = InfAboutOwnerVodomat['sale'] + HowMuchWereSpent
+                print('InfAboutOwnerVodomat[sale]:')
+                print(InfAboutOwnerVodomat['sale'])
 
                 bot.send_message(param['idT'], "У вас на счету " + str(param['score']) + "₽")
 
                 hostbd.update_vodomatScore(idv, InfOfVodomat)
 
-
                 param['idv'] = 0
-
+                print('hiiiiiii')
                 userbd.update_user(**param)
+
+                userbd.update_userAfterGotMoney(**InfAboutOwnerVodomat)
 
                 ypar = {'method': 'got', 'param': 'saved'}
                 send(ypar, idv)
@@ -236,7 +277,7 @@ def connect(sock, addr):
 def conGateway():
     try:
         sock = socket.socket()
-        sock.bind(('', 9090))
+        sock.bind(('', 8080))
         return sock
     except:
         sock = socket.socket()
