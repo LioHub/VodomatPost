@@ -51,8 +51,6 @@ def connect(sock, addr):
             return False
 
         date = json.loads(data)
-        # print('date:')
-        # print(date)
         try:
             method = date.get("method")
             param = date.get("param")
@@ -98,6 +96,23 @@ def connect(sock, addr):
                 print(date)
                 try:
                     idv = param['idv']
+                    tableSock[int(idv)].update({"locked": True})
+                    send(date, idv)
+                    tableSock[int(idv)].update({"locked": False})
+                except:
+                    bot.send_message(param['idT'],
+                                             "Приносим вам свои извинения,"
+                                             "но водомат временно в не рабочем состоянии!")
+
+            elif method == 'GetSettings':
+                print("GetSettings:")
+                print(date)
+
+                try:
+                    idv = param['idv']
+                    date = hostbd.get_vodomat(idv)
+                    print('date:')
+                    print(date)
                     tableSock[int(idv)].update({"locked": True})
                     send(date, idv)
                     tableSock[int(idv)].update({"locked": False})
@@ -184,6 +199,7 @@ def connect(sock, addr):
                     InfAboutOwnerVodomat['сashing'] = InfAboutOwnerVodomat['сashing'] + HowMuchWereGiven
                 except:
                     InfOfVodomat['сashing'] = 0
+                    InfAboutOwnerVodomat['сashing']=0
 
                 print("InfOfVodomat['сashing']:")
                 print(InfOfVodomat.get('сashing'))
