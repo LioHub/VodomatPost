@@ -3,15 +3,16 @@ import socket
 import json
 import telebot
 
-file = open("/opt/key.json")
-
-text = file.read()
-
-config = json.loads(text)
-
-token = config["token"]
-
+# file = open("/opt/key.json")
+#
+# text = file.read()
+#
+# config = json.loads(text)
+#
+# token = config["token"]
+token = '321273335:AAGC0-DP7Rwxu99_sN3sSVdYDOcPgu3869g'
 bot = telebot.TeleBot(token)
+
 
 
 from Archive import workbyfile

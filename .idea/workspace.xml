@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="66b37cd4-547a-4f87-8df1-3665b723944b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
+=======
+    <list default="true" id="66b37cd4-547a-4f87-8df1-3665b723944b" name="Default" comment="" />
+>>>>>>> new
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,7 +15,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/VodomatPost$hosthab.coverage" NAME="hosthab Coverage Results" MODIFIED="1506332601057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="VodomatPost" />
   </component>
@@ -20,6 +26,7 @@
       <file leaf-file-name="hosthab.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hosthab.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="369">
               <caret line="55" column="37" lean-forward="false" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
               <folding>
@@ -33,6 +40,25 @@
                 <element signature="e#9752#10084#0" expanded="false" />
                 <element signature="e#10119#10261#0" expanded="false" />
                 <element signature="e#10311#10388#0" expanded="false" />
+=======
+            <state relative-caret-position="166">
+              <caret line="55" column="21" lean-forward="true" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
+              <folding>
+                <element signature="e#408#558#0" expanded="false" />
+                <element signature="e#1132#1194#0" expanded="false" />
+                <element signature="e#1236#1252#0" expanded="false" />
+                <element signature="e#1418#2295#0" expanded="false" />
+                <element signature="e#2348#2893#0" expanded="false" />
+                <element signature="e#2950#3465#0" expanded="false" />
+                <element signature="e#3521#8356#0" expanded="false" />
+                <element signature="e#8411#8679#0" expanded="false" />
+                <element signature="e#8769#9112#0" expanded="false" />
+                <element signature="e#9168#9500#0" expanded="false" />
+                <element signature="e#9535#9677#0" expanded="false" />
+                <element signature="e#9727#9804#0" expanded="false" />
+                <element signature="e#10040#10112#0" expanded="false" />
+                <element signature="e#10134#10394#0" expanded="false" />
+>>>>>>> new
               </folding>
             </state>
           </provider>
@@ -45,6 +71,8 @@
               <caret line="20" column="23" lean-forward="false" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
               <folding>
                 <element signature="e#86#422#0" expanded="false" />
+                <marker date="1506331934318" expanded="true" signature="541:594" ph="INSERT INTO admin... " />
+                <marker date="1506331934318" expanded="true" signature="884:936" ph="UPDATE admin... " />
               </folding>
             </state>
           </provider>
@@ -53,11 +81,14 @@
       <file leaf-file-name="userbd.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Archive/userbd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="32" column="4" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+            <state relative-caret-position="809">
+              <caret line="50" column="22" lean-forward="false" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
               <folding>
                 <element signature="e#66#82#0" expanded="false" />
                 <element signature="e#159#495#0" expanded="false" />
+                <marker date="1506331934102" expanded="true" signature="656:708" ph="UPDATE users... " />
+                <marker date="1506331934102" expanded="true" signature="1322:1390" ph="UPDATE users... " />
+                <marker date="1506331934102" expanded="true" signature="1797:1829" ph="SELECT * FRO... users" />
               </folding>
             </state>
           </provider>
@@ -66,8 +97,8 @@
       <file leaf-file-name="hostbd.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Archive/hostbd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="63" column="16" lean-forward="false" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
+            <state relative-caret-position="42">
+              <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
               <folding>
                 <element signature="e#86#422#0" expanded="false" />
                 <element signature="e#467#2608#0" expanded="false" />
@@ -75,6 +106,12 @@
                 <element signature="e#2944#4289#0" expanded="false" />
                 <element signature="e#4873#5236#0" expanded="false" />
                 <element signature="e#5285#5482#0" expanded="false" />
+                <marker date="1506331933322" expanded="true" signature="1267:1720" ph="INSERT INTO vs... " />
+                <marker date="1506331933322" expanded="true" signature="2758:2787" ph="SELECT * FRO... vs" />
+                <marker date="1506331933322" expanded="true" signature="3014:3503" ph="UPDATE vs SE... " />
+                <marker date="1506331933322" expanded="true" signature="4548:4613" ph="UPDATE vs SE... " />
+                <marker date="1506331933322" expanded="true" signature="5066:5106" ph="UPDATE vs SE... " />
+                <marker date="1506331933322" expanded="true" signature="5361:5388" ph="DELETE from " />
               </folding>
             </state>
           </provider>
@@ -111,9 +148,15 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="668" />
+    <option name="y" value="231" />
     <option name="width" value="1938" />
     <option name="height" value="1048" />
   </component>
@@ -132,41 +175,30 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VodomatPost" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VodomatPost" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VodomatPost" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VodomatPost" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Archive" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="VodomatPost" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VodomatPost" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+=======
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/VodomatPost-20170925T082753Z-001/VodomatPost" />
+>>>>>>> new
     <property name="SearchEverywhereHistoryKey" value="globalCommand&#9;null&#9;null" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -191,79 +223,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.load">
-    <configuration default="false" name="hosthab" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="VodomatPost" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hosthab.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="load" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="VodomatPost" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/load.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="hostbd" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Archive" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="VodomatPost" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Archive/hostbd.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="userbd" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Archive" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="VodomatPost" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Archive/userbd.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.hosthab">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -328,6 +288,78 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
+    <configuration name="hostbd" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Archive" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="VodomatPost" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Archive/hostbd.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="hosthab" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="VodomatPost" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hosthab.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="load" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="VodomatPost" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/load.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="userbd" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Archive" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="VodomatPost" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Archive/userbd.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
     <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python.hosthab" />
       <item index="1" class="java.lang.String" itemvalue="Python.load" />
@@ -336,8 +368,8 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.load" />
-        <item index="1" class="java.lang.String" itemvalue="Python.hosthab" />
+        <item index="0" class="java.lang.String" itemvalue="Python.hosthab" />
+        <item index="1" class="java.lang.String" itemvalue="Python.load" />
         <item index="2" class="java.lang.String" itemvalue="Python.userbd" />
         <item index="3" class="java.lang.String" itemvalue="Python.hostbd" />
       </list>
@@ -525,6 +557,7 @@
       <option name="project" value="LOCAL" />
       <updated>1501510258434</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00025" summary="Vodomat">
       <created>1501675023012</created>
       <option name="number" value="00025" />
@@ -547,15 +580,25 @@
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06928034" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+    <option name="localTasksCounter" value="25" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.067708336" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> new
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20581396" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20478171" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -565,6 +608,9 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -576,7 +622,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="39" />
+      <option name="time" value="42" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -593,6 +639,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#341#491#0" expanded="false" />
             <element signature="e#1065#1127#0" expanded="false" />
             <element signature="e#1304#2181#0" expanded="false" />
@@ -603,6 +650,22 @@
             <element signature="e#9752#10084#0" expanded="false" />
             <element signature="e#10119#10261#0" expanded="false" />
             <element signature="e#10311#10388#0" expanded="false" />
+=======
+            <element signature="e#408#558#0" expanded="false" />
+            <element signature="e#1132#1194#0" expanded="false" />
+            <element signature="e#1236#1252#0" expanded="false" />
+            <element signature="e#1418#2295#0" expanded="false" />
+            <element signature="e#2348#2893#0" expanded="false" />
+            <element signature="e#2950#3465#0" expanded="false" />
+            <element signature="e#3521#8356#0" expanded="false" />
+            <element signature="e#8411#8679#0" expanded="false" />
+            <element signature="e#8769#9112#0" expanded="false" />
+            <element signature="e#9168#9500#0" expanded="false" />
+            <element signature="e#9535#9677#0" expanded="false" />
+            <element signature="e#9727#9804#0" expanded="false" />
+            <element signature="e#10040#10112#0" expanded="false" />
+            <element signature="e#10134#10394#0" expanded="false" />
+>>>>>>> new
           </folding>
         </state>
       </provider>
@@ -633,6 +696,7 @@
         <state relative-caret-position="588">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#341#491#0" expanded="false" />
             <element signature="e#1065#1127#0" expanded="false" />
             <element signature="e#1304#2181#0" expanded="false" />
@@ -643,6 +707,22 @@
             <element signature="e#9752#10084#0" expanded="false" />
             <element signature="e#10119#10261#0" expanded="false" />
             <element signature="e#10311#10388#0" expanded="false" />
+=======
+            <element signature="e#408#558#0" expanded="false" />
+            <element signature="e#1132#1194#0" expanded="false" />
+            <element signature="e#1236#1252#0" expanded="false" />
+            <element signature="e#1418#2295#0" expanded="false" />
+            <element signature="e#2348#2893#0" expanded="false" />
+            <element signature="e#2950#3465#0" expanded="false" />
+            <element signature="e#3521#8356#0" expanded="false" />
+            <element signature="e#8411#8679#0" expanded="false" />
+            <element signature="e#8769#9112#0" expanded="false" />
+            <element signature="e#9168#9500#0" expanded="false" />
+            <element signature="e#9535#9677#0" expanded="false" />
+            <element signature="e#9727#9804#0" expanded="false" />
+            <element signature="e#10040#10112#0" expanded="false" />
+            <element signature="e#10134#10394#0" expanded="false" />
+>>>>>>> new
           </folding>
         </state>
       </provider>
@@ -666,6 +746,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#341#491#0" expanded="false" />
             <element signature="e#1065#1127#0" expanded="false" />
             <element signature="e#1304#2181#0" expanded="false" />
@@ -676,6 +757,22 @@
             <element signature="e#9752#10084#0" expanded="false" />
             <element signature="e#10119#10261#0" expanded="false" />
             <element signature="e#10311#10388#0" expanded="false" />
+=======
+            <element signature="e#408#558#0" expanded="false" />
+            <element signature="e#1132#1194#0" expanded="false" />
+            <element signature="e#1236#1252#0" expanded="false" />
+            <element signature="e#1418#2295#0" expanded="false" />
+            <element signature="e#2348#2893#0" expanded="false" />
+            <element signature="e#2950#3465#0" expanded="false" />
+            <element signature="e#3521#8356#0" expanded="false" />
+            <element signature="e#8411#8679#0" expanded="false" />
+            <element signature="e#8769#9112#0" expanded="false" />
+            <element signature="e#9168#9500#0" expanded="false" />
+            <element signature="e#9535#9677#0" expanded="false" />
+            <element signature="e#9727#9804#0" expanded="false" />
+            <element signature="e#10040#10112#0" expanded="false" />
+            <element signature="e#10134#10394#0" expanded="false" />
+>>>>>>> new
           </folding>
         </state>
       </provider>
@@ -699,6 +796,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#341#491#0" expanded="false" />
             <element signature="e#1065#1127#0" expanded="false" />
             <element signature="e#1304#2181#0" expanded="false" />
@@ -709,6 +807,22 @@
             <element signature="e#9752#10084#0" expanded="false" />
             <element signature="e#10119#10261#0" expanded="false" />
             <element signature="e#10311#10388#0" expanded="false" />
+=======
+            <element signature="e#408#558#0" expanded="false" />
+            <element signature="e#1132#1194#0" expanded="false" />
+            <element signature="e#1236#1252#0" expanded="false" />
+            <element signature="e#1418#2295#0" expanded="false" />
+            <element signature="e#2348#2893#0" expanded="false" />
+            <element signature="e#2950#3465#0" expanded="false" />
+            <element signature="e#3521#8356#0" expanded="false" />
+            <element signature="e#8411#8679#0" expanded="false" />
+            <element signature="e#8769#9112#0" expanded="false" />
+            <element signature="e#9168#9500#0" expanded="false" />
+            <element signature="e#9535#9677#0" expanded="false" />
+            <element signature="e#9727#9804#0" expanded="false" />
+            <element signature="e#10040#10112#0" expanded="false" />
+            <element signature="e#10134#10394#0" expanded="false" />
+>>>>>>> new
           </folding>
         </state>
       </provider>
@@ -732,6 +846,7 @@
         <state relative-caret-position="420">
           <caret line="24" column="6" lean-forward="false" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#341#491#0" expanded="false" />
             <element signature="e#1065#1127#0" expanded="false" />
             <element signature="e#1304#2181#0" expanded="false" />
@@ -742,6 +857,22 @@
             <element signature="e#9752#10084#0" expanded="false" />
             <element signature="e#10119#10261#0" expanded="false" />
             <element signature="e#10311#10388#0" expanded="false" />
+=======
+            <element signature="e#408#558#0" expanded="false" />
+            <element signature="e#1132#1194#0" expanded="false" />
+            <element signature="e#1236#1252#0" expanded="false" />
+            <element signature="e#1418#2295#0" expanded="false" />
+            <element signature="e#2348#2893#0" expanded="false" />
+            <element signature="e#2950#3465#0" expanded="false" />
+            <element signature="e#3521#8356#0" expanded="false" />
+            <element signature="e#8411#8679#0" expanded="false" />
+            <element signature="e#8769#9112#0" expanded="false" />
+            <element signature="e#9168#9500#0" expanded="false" />
+            <element signature="e#9535#9677#0" expanded="false" />
+            <element signature="e#9727#9804#0" expanded="false" />
+            <element signature="e#10040#10112#0" expanded="false" />
+            <element signature="e#10134#10394#0" expanded="false" />
+>>>>>>> new
           </folding>
         </state>
       </provider>
@@ -765,6 +896,7 @@
         <state relative-caret-position="504">
           <caret line="24" column="6" lean-forward="false" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#341#491#0" expanded="false" />
             <element signature="e#1065#1127#0" expanded="false" />
             <element signature="e#1304#2181#0" expanded="false" />
@@ -775,6 +907,22 @@
             <element signature="e#9752#10084#0" expanded="false" />
             <element signature="e#10119#10261#0" expanded="false" />
             <element signature="e#10311#10388#0" expanded="false" />
+=======
+            <element signature="e#408#558#0" expanded="false" />
+            <element signature="e#1132#1194#0" expanded="false" />
+            <element signature="e#1236#1252#0" expanded="false" />
+            <element signature="e#1418#2295#0" expanded="false" />
+            <element signature="e#2348#2893#0" expanded="false" />
+            <element signature="e#2950#3465#0" expanded="false" />
+            <element signature="e#3521#8356#0" expanded="false" />
+            <element signature="e#8411#8679#0" expanded="false" />
+            <element signature="e#8769#9112#0" expanded="false" />
+            <element signature="e#9168#9500#0" expanded="false" />
+            <element signature="e#9535#9677#0" expanded="false" />
+            <element signature="e#9727#9804#0" expanded="false" />
+            <element signature="e#10040#10112#0" expanded="false" />
+            <element signature="e#10134#10394#0" expanded="false" />
+>>>>>>> new
           </folding>
         </state>
       </provider>
@@ -798,6 +946,7 @@
         <state relative-caret-position="420">
           <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#341#491#0" expanded="false" />
             <element signature="e#1065#1127#0" expanded="false" />
             <element signature="e#1304#2181#0" expanded="false" />
@@ -808,6 +957,22 @@
             <element signature="e#9752#10084#0" expanded="false" />
             <element signature="e#10119#10261#0" expanded="false" />
             <element signature="e#10311#10388#0" expanded="false" />
+=======
+            <element signature="e#408#558#0" expanded="false" />
+            <element signature="e#1132#1194#0" expanded="false" />
+            <element signature="e#1236#1252#0" expanded="false" />
+            <element signature="e#1418#2295#0" expanded="false" />
+            <element signature="e#2348#2893#0" expanded="false" />
+            <element signature="e#2950#3465#0" expanded="false" />
+            <element signature="e#3521#8356#0" expanded="false" />
+            <element signature="e#8411#8679#0" expanded="false" />
+            <element signature="e#8769#9112#0" expanded="false" />
+            <element signature="e#9168#9500#0" expanded="false" />
+            <element signature="e#9535#9677#0" expanded="false" />
+            <element signature="e#9727#9804#0" expanded="false" />
+            <element signature="e#10040#10112#0" expanded="false" />
+            <element signature="e#10134#10394#0" expanded="false" />
+>>>>>>> new
           </folding>
         </state>
       </provider>
@@ -829,20 +994,8 @@
     <entry file="file://$PROJECT_DIR$/plugins/api.py" />
     <entry file="file://$PROJECT_DIR$/plugins/hosthab.py" />
     <entry file="file://$PROJECT_DIR$/plugins/main.py" />
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1956018068/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="2829" column="8" lean-forward="false" selection-start-line="2829" selection-start-column="8" selection-end-line="2829" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Программы/Python 36/Lib/threading.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="915" column="0" lean-forward="false" selection-start-line="915" selection-start-column="0" selection-end-line="915" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1956018068/builtins.py" />
+    <entry file="file://E:/Программы/Python 36/Lib/threading.py" />
     <entry file="file://$PROJECT_DIR$/Archive/archive.txt" />
     <entry file="file://$PROJECT_DIR$/Archive/fto_time.py" />
     <entry file="file://$PROJECT_DIR$/main.py" />
@@ -865,35 +1018,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://E:/Программы/Python 36/Lib/ssl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Программы/Python 36/Lib/json/decoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7455">
-          <caret line="357" column="23" lean-forward="true" selection-start-line="357" selection-start-column="23" selection-end-line="357" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://E:/Программы/Python 36/Lib/ssl.py" />
+    <entry file="file://E:/Программы/Python 36/Lib/json/decoder.py" />
     <entry file="file://$PROJECT_DIR$/archive2.txt" />
-    <entry file="file://D:/userbd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/hostbd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/userbd.py" />
+    <entry file="file://E:/hostbd.py" />
     <entry file="file://$PROJECT_DIR$/archive.txt">
       <provider editor-type-id="LargeFileEditor">
         <state relative-caret-position="0">
@@ -927,20 +1056,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Archive/adminka.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="20" column="23" lean-forward="false" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
-          <folding>
-            <element signature="e#86#422#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Archive/hostbd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="63" column="16" lean-forward="false" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
+        <state relative-caret-position="42">
+          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding>
             <element signature="e#86#422#0" expanded="false" />
             <element signature="e#467#2608#0" expanded="false" />
@@ -948,23 +1067,45 @@
             <element signature="e#2944#4289#0" expanded="false" />
             <element signature="e#4873#5236#0" expanded="false" />
             <element signature="e#5285#5482#0" expanded="false" />
+            <marker date="1506331933322" expanded="true" signature="1267:1720" ph="INSERT INTO vs... " />
+            <marker date="1506331933322" expanded="true" signature="2758:2787" ph="SELECT * FRO... vs" />
+            <marker date="1506331933322" expanded="true" signature="3014:3503" ph="UPDATE vs SE... " />
+            <marker date="1506331933322" expanded="true" signature="4548:4613" ph="UPDATE vs SE... " />
+            <marker date="1506331933322" expanded="true" signature="5066:5106" ph="UPDATE vs SE... " />
+            <marker date="1506331933322" expanded="true" signature="5361:5388" ph="DELETE from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Archive/adminka.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="20" column="23" lean-forward="false" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+          <folding>
+            <element signature="e#86#422#0" expanded="false" />
+            <marker date="1506331934318" expanded="true" signature="541:594" ph="INSERT INTO admin... " />
+            <marker date="1506331934318" expanded="true" signature="884:936" ph="UPDATE admin... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Archive/userbd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="32" column="4" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+        <state relative-caret-position="809">
+          <caret line="50" column="22" lean-forward="false" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
           <folding>
             <element signature="e#66#82#0" expanded="false" />
             <element signature="e#159#495#0" expanded="false" />
+            <marker date="1506331934102" expanded="true" signature="656:708" ph="UPDATE users... " />
+            <marker date="1506331934102" expanded="true" signature="1322:1390" ph="UPDATE users... " />
+            <marker date="1506331934102" expanded="true" signature="1797:1829" ph="SELECT * FRO... users" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hosthab.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="369">
           <caret line="55" column="37" lean-forward="false" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
           <folding>
@@ -978,6 +1119,25 @@
             <element signature="e#9752#10084#0" expanded="false" />
             <element signature="e#10119#10261#0" expanded="false" />
             <element signature="e#10311#10388#0" expanded="false" />
+=======
+        <state relative-caret-position="166">
+          <caret line="55" column="21" lean-forward="true" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
+          <folding>
+            <element signature="e#408#558#0" expanded="false" />
+            <element signature="e#1132#1194#0" expanded="false" />
+            <element signature="e#1236#1252#0" expanded="false" />
+            <element signature="e#1418#2295#0" expanded="false" />
+            <element signature="e#2348#2893#0" expanded="false" />
+            <element signature="e#2950#3465#0" expanded="false" />
+            <element signature="e#3521#8356#0" expanded="false" />
+            <element signature="e#8411#8679#0" expanded="false" />
+            <element signature="e#8769#9112#0" expanded="false" />
+            <element signature="e#9168#9500#0" expanded="false" />
+            <element signature="e#9535#9677#0" expanded="false" />
+            <element signature="e#9727#9804#0" expanded="false" />
+            <element signature="e#10040#10112#0" expanded="false" />
+            <element signature="e#10134#10394#0" expanded="false" />
+>>>>>>> new
           </folding>
         </state>
       </provider>
