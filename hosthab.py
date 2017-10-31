@@ -2,15 +2,16 @@ import threading
 import socket
 import json
 import telebot
+from telebot import types
+import time
+import billing
 
-# file = open("/opt/key.json")
-#
+file = open("/opt/key.json")
 # text = file.read()
-#
 # config = json.loads(text)
-#
 # token = config["token"]
-token = '321273335:AAGC0-DP7Rwxu99_sN3sSVdYDOcPgu3869g'
+
+token = json.loads(file.read())["token"]
 bot = telebot.TeleBot(token)
 
 
@@ -30,53 +31,89 @@ def cod(data):
     return data
 
 def send(data, idv):
-    print(tableSock[int(idv)]["locked"])
-    if data['method'] == 'got' and tableSock[int(idv)]["locked"] == False:
-        data = cod(data)
-        tableSock[int(idv)]["socket"].send(data)
-    else:
-        if data['method'] == 'Start' or data['method'] == 'Stop' or data['method'] == 'settings':
-            data = cod(data)
-            tableSock[int(idv)]["socket"].send(data)
+    data = cod(data)
+    tableSock[int(idv)]["socket"].send(data)
     print("end send")
 
-
+i=0
 def connect(sock, addr):
     while True:
-        data = sock.recv(2048)
-        data = data.decode("utf-8")
-
+        data = json.loads(sock.recv(2048).decode("utf-8"))
+        # data = data.decode("utf-8")
 
         if data is None:
             print("Disconnect. Not Data: ", addr)
             return False
 
-        date = json.loads(data)
+        # data = json.loads(data)
         try:
-            method = date.get("method")
-            param = date.get("param")
-
-
+            method = data.get("method")
+            param = data.get("param")
+            # print('method:')
+            # print(method)
+            # print('param:')
+            # print(param)
             if method == "Start":
                 print("Activate:")
                 print(date)
-
+                global i
                 hostWI = hostbd.get_vodomat(int(param['idv']))
                 print('hostWI:')
                 print(hostWI)
                 if hostWI['State'] == 'WAIT':
-                        print('Hi')
-                        try:
-                            userbd.update_user(**param)
-                            perTrue = "1"
-                            idv = param['idv']
-                            hostbd.update_vodomatActivate(idv, perTrue)
-                            tableSock[int(idv)].update({"locked": True})
-                            send(date, idv)
-                        except:
+                    # LastTime =
+                    if (hostWI['lasttime'] - 10) < time.time():
+                        if hostWI['action'] == '0':
+                            hostbd.update_vodomatReserve(hostWI['leftFromPaid'], hostWI['idv'])
+                            print('Hi')
+                            try:
+                                print()
+                                userbd.update_user(**param)
+                                perTrue = "1"
+                                idv = param['idv']
+                                i = 0
+                                hostbd.update_vodomatActivate(idv, perTrue)
+                                send(date, idv)
+
+                                Get_points = types.ReplyKeyboardMarkup()
+                                Get_points.row("Остановить")
+
+                                userbd.update_useridv(**param)
+
+                                bot.send_message(param['idT'], "Вы успешно подключились к водомату", reply_markup = Get_points)
+                                text_water = "Подключение прошло успешно\n\n1. Поднесите тару к водомату\n\n2. Нажмите кноку \"Старт\" на аппарате.\n\n Цена за 1 литр 4₽\n\nЧтобы пополнить баланс используйте купюроприемник и монетоприемник."
+                                bot.send_message(param['idT'], text_water)
+                                try:
+                                    hostbd.add_hostVVS(**hostWI)
+                                except:
+                                    hostbd.update_vodomatVVS(**hostWI)
+                            except Exception as e:
+                                print("Exception %s" % e)
+                                idv = param['idv']
+                                perFalse = "0"
+                                hostbd.update_vodomatActivate(idv, perFalse)
+
+                                param['idv'] = 0
+                                userbd.update_useridv(**param)
+
+                                # Вывод кнопок
+                                Get_points = types.ReplyKeyboardMarkup()
+                                Get_points.row("Подключиться к водомату")
+                                Get_points.row("Личный кабинет")
+
+                                bot.send_message(param['idT'],
+                                                 "Приносим вам свои извинения,"
+                                                 "но водомат временно  не работает (;", reply_markup = Get_points)
+                        else:
                             bot.send_message(param['idT'],
-                                             "Приносим вам свои извинения,"
-                                             "но водомат временно в не рабочем состоянии!")
+                                             "Пожалуйста, подождите, водомат пока занимет другой человек, ожидайте окончания сеанса его работы")
+                    else:
+
+                         bot.send_message(param['idT'],"Нет связи с водоматом")
+                else:
+                    bot.send_message(param['idT'],
+                                     "Приносим вам свои извинения,"
+                                     "но водомат временно  не работает (;")
 
             elif method == "Stop":
                 print("Stop:")
@@ -85,7 +122,13 @@ def connect(sock, addr):
                     idv = param['idv']
                     perFalse= "0"
                     hostbd.update_vodomatActivate(idv, perFalse)
-                    tableSock[int(idv)].update({"locked": True})
+
+                    reserve = {'reserve': 0}
+                    get_reserve = hostbd.get_vodomat(idv)
+                    reserve['reserve'] = get_reserve['reserve']
+                    date['param'].update(reserve)
+                    # tableSock[int(idv)].update({"locked": True})
+                    bot.send_message(param['idT'], "Вы закрыли сеанс работы с водоматом, спасибо, что вы с нами")
                     send(date, idv)
                 except:
                     bot.send_message(param['idT'],
@@ -97,13 +140,25 @@ def connect(sock, addr):
                 print(date)
                 try:
                     idv = param['idv']
-                    tableSock[int(idv)].update({"locked": True})
+                    # tableSock[int(idv)].update({"locked": True})
+                    bot.send_message(param['idT'], "Ваш запрос принят на смену настроект, ожидайте")
                     send(date, idv)
-                    tableSock[int(idv)].update({"locked": False})
+                    # tableSock[int(idv)].update({"locked": False})
                 except:
                     bot.send_message(param['idT'],
                                              "Приносим вам свои извинения,"
                                              "но водомат временно в не рабочем состоянии!")
+
+            elif method == "AddUser":
+                print("AddUser:")
+                print(date)
+                bot.send_message(date['param']['idT'], "Поздравляем, вы успешно прошли регистрацию и спасибо, что вы с нами и за ваш вклад, и подержку")
+                userbd.add_user(date['param']['idT'], date['param']['name'])
+
+            elif method == "PromoCode":
+                print("PromoCode:")
+                print(date)
+                userbd.insert(date['param']['idT'], date['param']['inviter'])
 
             elif method == 'GetSettings':
                 print("GetSettings:")
@@ -114,9 +169,10 @@ def connect(sock, addr):
                     date = hostbd.get_vodomat(idv)
                     print('date:')
                     print(date)
-                    tableSock[int(idv)].update({"locked": True})
+                    # tableSock[int(idv)].update({"locked": True})
+                    bot.send_message(param['idT'], "Ваш запрос принят на получение настроект, ожидайте")
                     send(date, idv)
-                    tableSock[int(idv)].update({"locked": False})
+                    # tableSock[int(idv)].update({"locked": False})
                 except:
                     bot.send_message(param['idT'],
                                              "Приносим вам свои извинения,"
@@ -125,164 +181,120 @@ def connect(sock, addr):
             elif method == "Answer":
 
                 print("Answer:")
-                print(date)
+                print(data)
 
-                idv = int(param['idv'])
-                tableSock[int(idv)].update({"locked": False})
+                NewData = {'HowMuchWereSpent': '', 'HowMuchWere': '', 'HowMuchWereGiven': '', 'InfOfVodomat': ''}
 
-                #статус водоматы с водомата
-                StatusVodomataFromVodomat = date['Status']
-                print("StatusVodomataFromVodomat:")
-                print(StatusVodomataFromVodomat)
-
-                #счет пользоателя с БД
-                #Score of user
+                # счет пользоателя с БД
                 ScoreOfUser = userbd.get_user(param['idT'])
-                print("ScoreOfUser:2")
-                print(ScoreOfUser)
                 ScoreOfUser = int(ScoreOfUser['score'])
-                print("ScoreOfUser:6")
-                print(ScoreOfUser)
 
-                #статус водомота с БД
-                StatusVodomataFromDB = hostbd.get_vodomat(idv)
-                print("SostoyanieVodomata:3")
-                print(StatusVodomataFromDB)
 
-                #затраты до
-                TotalPaidBefore = int(StatusVodomataFromDB['totalPaid'])
-                print("TotalPaidBefore:4")
-                print(TotalPaidBefore)
+                # статус водомота с БД
+                NewData['InfOfVodomat'] = hostbd.get_vodomatVVS(param['Status']['idv'])  # статус водомота с БД
+                hostbd.delete_vodomatVVS(param['Status']['idv'])
 
-                #затраты после
-                TotalPaidAfter = StatusVodomataFromVodomat['totalPaid']
-                print("TotalPaidAfter:5")
-                print(TotalPaidAfter)
 
-                # Сколько потратил
-                HowMuchWereSpent = TotalPaidAfter - TotalPaidBefore
-                print("HowMuchWereSpent:")
-                print(HowMuchWereSpent)
-
-                # Сколько было
-                HowMuchWere = HowMuchWereSpent + StatusVodomataFromVodomat['leftFromPaid']
-                print("HowMuchWere:")
-                print(HowMuchWere)
-
-                # Сколько он закинул на счет
-                HowMuchWereGiven = HowMuchWere - ScoreOfUser
-                print("HowMuchWereGiven:")
-                print(HowMuchWereGiven)
-
-                # Информация водомата с БД
-                InfOfVodomat = hostbd.get_vodomat(idv)
-                print("InfOfVodomat:")
-                print(InfOfVodomat)
-
-                print("InfOfVodomat['sale']:")
-                print(InfOfVodomat['sale'])
-
-                print("InfOfVodomat['сashing']:")
-                print(InfOfVodomat.get('сashing'))
-
-                admin = adminka.get_admin(idv)
-                print('admin:')
-                print(admin)
-
+                InfAboutOwnerAndVodomat = billing.SeekHowMuchScore(param, NewData, ScoreOfUser)
+                admin = adminka.get_admin(param['Status']['idv'])
                 InfAboutOwnerVodomat = userbd.get_user(admin['idT'])
-                print('InfAboutOwnerVodomat:')
-                print(InfAboutOwnerVodomat)
-
-                # Наличка водомата с БД
-
-                try:
-                    InfOfVodomat['сashing'] = int(InfOfVodomat.get('сashing')) + int(HowMuchWereGiven)
-                    InfAboutOwnerVodomat['сashing'] = InfAboutOwnerVodomat['сashing'] + HowMuchWereGiven
-                except:
-                    InfOfVodomat['сashing'] = 0
-                    InfAboutOwnerVodomat['сashing']=0
-
-                print("InfOfVodomat['сashing']:")
-                print(InfOfVodomat.get('сashing'))
-
-                print("InfAboutOwnerVodomat['сashing']:")
-                print(InfAboutOwnerVodomat['сashing'])
-
-                # Кредит водомата с БД
-                # credit = int(InfOfVodomat['credit'])
-                print("InfOfVodomat['credit']:")
-                print(InfOfVodomat['credit'])
-
-                credit = HowMuchWereGiven - HowMuchWereSpent
-                if credit > 0:
-                    InfOfVodomat['credit'] = InfOfVodomat['credit'] + credit
-                    print("InfOfVodomat['credit']:")
-                    print(InfOfVodomat['credit'])
-
-                    InfAboutOwnerVodomat['credit'] = InfAboutOwnerVodomat['credit'] + credit
-                    print("InfAboutOwnerVodomat['credit']:")
-                    print(InfAboutOwnerVodomat['credit'])
-                else:
-                    credit = 0
-                print("InfOfVodomat['credit']:")
-                print(InfOfVodomat['credit'])
 
 
-                # Продажи водомата с БД
-                print("InfOfVodomat['sale']:")
-                print(InfOfVodomat['sale'])
+                bill = billing.SeekSales(InfAboutOwnerAndVodomat, InfAboutOwnerVodomat)
 
-                InfOfVodomat['sale'] = InfOfVodomat['sale'] + HowMuchWereSpent
-                print("InfOfVodomat['sale']:")
-                print(InfOfVodomat['sale'])
 
-                InfAboutOwnerVodomat['sale'] = InfAboutOwnerVodomat['sale'] + HowMuchWereSpent
-                print('InfAboutOwnerVodomat[sale]:')
-                print(InfAboutOwnerVodomat['sale'])
-
-                bot.send_message(param['idT'], "У вас на счету " + str(param['score']) + "₽")
-
-                hostbd.update_vodomatScore(idv, InfOfVodomat)
+                hostbd.update_vodomatScore(param['Status']['idv'], bill['InfOfVodomat'])
+                bot.send_message(param['idT'], "У вас на счету %5.1f литров." % (param['score'] / 4))
 
                 param['idv'] = 0
                 print('hiiiiiii')
+
+
                 userbd.update_user(**param)
 
-                userbd.update_userAfterGotMoney(**InfAboutOwnerVodomat)
+                userbd.update_userAfterGotMoney(**bill['InfAboutOwnerVodomat'])
 
-                ypar = {'method': 'got', 'param': 'saved'}
-                send(ypar, idv)
+
+                for AdminUser in admin:
+                    result = billing.percnt(InfAboutOwnerAndVodomat['HowMuchWereSpent'], AdminUser)
+                    collect = {'idT': 0, 'idv': 0, 'score': 0}
+                    collect['score'] = result
+                    collect['idT'] = AdminUser['idT']
+                    collect['idv'] = AdminUser['idv']
+                    userfrombd = userbd.get_user(idT=AdminUser['idT'])
+                    collect['score'] = collect['score'] + userfrombd['score']
+                    userbd.update_user(**collect)
 
 
             elif method == "error":
-                idv = param['idv']
                 bot.send_message(param['idT'],
                                  "В ходе работы произошла ошибка, пожалуйста попробуйте еще разок, ладненько?")
-                ypar = {'method': 'got', 'param': 'saved'}
-                send(ypar, idv)
 
             elif method == "status":  # for get information about hosts
                 idv = param['idv']
-                prev = hostbd.get_vodomat(idv)
-                ypar = {'method': 'got', 'param': 'saved'}
-                if date != prev:
+                # global i
+                prev = hostbd.get_vodomat2(idv)
+                print("prev:")
+                print(prev)
+                print("param:")
+                print(param)
+                print('hey')
+                if param['leftFromPaid'] != prev['leftFromPaid']:
                     hostbd.update_vodomat(**param)
+                    print('1')
                     workbyfile.write_on_file(date)
+                    i = 0
+                    print('2')
                     # print("Savedate = %s" % date)
-                send(ypar, idv)
+                else:
+                   hostbd.update_vodomatTime(param['idv'])
+                   print('outElse')
+                   KnowAc = hostbd.get_vodomat(idv)
+                   print("KnowAc:")
+                   print(KnowAc)
+                   if KnowAc['action'] == '1':
+                       print('intoElse')
+                       i = i + 1
+                       print(i)
+                       if i > 60:
+                         print('intoIf')
+                         user = userbd.get_userV(idv)
+                         print('user:')
+                         print(user)
+                         ypar = {'method': 'Stop', 'param':{'idT': user['idT'], 'idv':user['idv']}}
+                         print('ypar:')
+                         print(ypar)
+                         send(ypar,user['idv'])
+                         i=0
+
+                         idv = param['idv']
+                         perFalse = "0"
+                         hostbd.update_vodomatActivate(idv, perFalse)
+                         # tableSock[int(idv)].update({"locked": True})
+
+
+                         # Вывод кнопок
+                         Get_points = types.ReplyKeyboardMarkup()
+                         Get_points.row("Подключиться к водомату")
+                         Get_points.row("Личный кабинет")
+                         bot.send_message(user['idT'], "Вы закрыли сеанс работы с водоматом, спасибо, что вы с нами", reply_markup = Get_points)
+                         user['idv'] = 0
+                         userbd.update_useridv(**user)
 
             elif method == "connect":
+                print("connect:")
                 idv = param['idv']
                 hostbd.add_host(idv)
                 hostbd.update_vodomat(**param)
-                tableSock.update({date['param']['idv']: {"socket": sock, "locked": False}})
+                # tableSock.update({date['param']['idv']: {"socket": sock, "locked": False}})
+                tableSock.update({date['param']['idv']: {"socket": sock}})
                 workbyfile.write_on_file(date)
-                ypar = {'method': 'got', 'param': 'saved'}
+                ypar = {'method': 'connect', 'param':'connection successfully'}
                 send(ypar, idv)
-            else:
-                idv = param['idv']
-                ypar = {"method": "error", "param": {"type": "not method", "args": method}}
-                send(ypar, idv)
+            # else:
+            #     idv = param['idv']
+            #     ypar = {"method": "error", "param": {"type": "not method", "args": method}}
+            #     send(ypar, idv)
         except ConnectionResetError:
             tableSock.pop({date['param']['idv']})
             print("Disconnect: ", addr)
@@ -291,6 +303,7 @@ def connect(sock, addr):
         except Exception as e:
             print(e)
 
+# Соединение по двум портам
 def conGateway():
     try:
         sock = socket.socket()
@@ -301,9 +314,9 @@ def conGateway():
         sock.bind(('', 9090))
         return sock
 
+# Наладка клинет-сервера
 def habStart():
     sock = conGateway()
-    # sock.bind(('', 9090))
     sock.listen(1000)
     while True:
         print("hosthab")
